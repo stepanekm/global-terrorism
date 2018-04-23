@@ -36,7 +36,6 @@ library(mapdata)
 library(maps)
 library(RColorBrewer)
 library(gganimate)
-options(repr.plot.width=9, repr.plot.height=5)
 
 gt <- read_csv("data/database.csv")
 

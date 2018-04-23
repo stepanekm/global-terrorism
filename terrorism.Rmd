@@ -41,7 +41,9 @@ skilled <- gtclean %>%
   summarise(killed = sum(killed))
 
 myPalette <- colorRampPalette(rev(brewer.pal(6, "OrRd")))
+```
 
+```{r gt2, echo= FALSE}
 ggplot(skilled, aes(x=iyear, y=killed)) +
   geom_line(color = rev(myPalette(1))) +
   scale_x_continuous(breaks = seq(1970, 2016, 2)) +
@@ -52,11 +54,10 @@ ggplot(skilled, aes(x=iyear, y=killed)) +
         axis.title.y = element_text(margin=margin(t = 0, r = 10, b = 0, l = 0)),
         axis.title.x = element_text(margin=margin(t = 10, r = 0, b = 0, l = 0)),
         plot.background = element_rect(fill = "#f5f5f2", color = NA))
-
 ```
 
 Bla bla bla 
-```{r gt2, message= FALSE, warning= FALSE}
+```{r gt3, message= FALSE, warning= FALSE}
 worldmap <- map_data("world")
 newworld <- worldmap %>%
   filter(region != "Antarctica")

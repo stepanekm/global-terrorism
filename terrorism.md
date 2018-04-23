@@ -1,23 +1,11 @@
----
-title: "Global Terrorism in Time"
-author: Martin Stepanek
-date: April 23, 2018
-output:
-  md_document:
-    variant: markdown_github
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## Global Terrorism in Time 
+Global Terrorism in Time
+------------------------
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r gt, message= FALSE, warning= FALSE}
+``` r
 library(dplyr)
 library(tidyverse)
 library(mapdata)
@@ -47,21 +35,11 @@ skilled <- gtclean %>%
 myPalette <- colorRampPalette(rev(brewer.pal(6, "OrRd")))
 ```
 
-```{r gt2, echo= FALSE}
-ggplot(skilled, aes(x=iyear, y=killed)) +
-  geom_line(color = rev(myPalette(1))) +
-  scale_x_continuous(breaks = seq(1970, 2016, 2)) +
-  labs(y="Killed", title="Terrorist Attacks from 1970 to 2016", x="Year") +
-  theme_minimal() + 
-  theme(plot.title = element_text(size = 14, face = "bold", color = "#4e4d47"),
-        axis.title = element_text(size = 8, color = "#4e4d47"),
-        axis.title.y = element_text(margin=margin(t = 0, r = 10, b = 0, l = 0)),
-        axis.title.x = element_text(margin=margin(t = 10, r = 0, b = 0, l = 0)),
-        plot.background = element_rect(fill = "#f5f5f2", color = NA))
-```
+![](terrorism_files/figure-markdown_github/gt2-1.png)
 
-Bla bla bla 
-```{r gt3, message= FALSE, warning= FALSE}
+Bla bla bla
+
+``` r
 worldmap <- map_data("world")
 newworld <- worldmap %>%
   filter(region != "Antarctica")
@@ -97,6 +75,7 @@ map <- world +
   labs(title = "Number of People Who Died of Terrorist Attacks in",
        caption="Source: start.umd.edu | By Martin Stepanek")
 ```
+
 ![](https://github.com/stepanekm/global-terrorism/blob/master/map.gif)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

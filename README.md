@@ -99,6 +99,12 @@ map <- world +
 
 ![](https://github.com/stepanekm/global-terrorism/blob/master/map.gif)
 
+``` r
+gganimate(map, ani.width = 900, ani.height = 500)
+```
+
+![](readme-figs/gt4-1.png)![](readme-figs/gt4-2.png)![](readme-figs/gt4-3.png)![](readme-figs/gt4-4.png)![](readme-figs/gt4-5.png)![](readme-figs/gt4-6.png)![](readme-figs/gt4-7.png)![](readme-figs/gt4-8.png)![](readme-figs/gt4-9.png)![](readme-figs/gt4-10.png)![](readme-figs/gt4-11.png)![](readme-figs/gt4-12.png)![](readme-figs/gt4-13.png)![](readme-figs/gt4-14.png)![](readme-figs/gt4-15.png)![](readme-figs/gt4-16.png)![](readme-figs/gt4-17.png)![](readme-figs/gt4-18.png)![](readme-figs/gt4-19.png)![](readme-figs/gt4-20.png)![](readme-figs/gt4-21.png)![](readme-figs/gt4-22.png)![](readme-figs/gt4-23.png)![](readme-figs/gt4-24.png)![](readme-figs/gt4-25.png)![](readme-figs/gt4-26.png)![](readme-figs/gt4-27.png)![](readme-figs/gt4-28.png)![](readme-figs/gt4-29.png)![](readme-figs/gt4-30.png)![](readme-figs/gt4-31.png)![](readme-figs/gt4-32.png)![](readme-figs/gt4-33.png)![](readme-figs/gt4-34.png)![](readme-figs/gt4-35.png)![](readme-figs/gt4-36.png)![](readme-figs/gt4-37.png)![](readme-figs/gt4-38.png)![](readme-figs/gt4-39.png)![](readme-figs/gt4-40.png)![](readme-figs/gt4-41.png)![](readme-figs/gt4-42.png)![](readme-figs/gt4-43.png)![](readme-figs/gt4-44.png)![](readme-figs/gt4-45.png)![](readme-figs/gt4-46.png)
+
 Of course, if we wanted to read them all in at once and make a tidy frame of all of them
 
 #### The Meta Data

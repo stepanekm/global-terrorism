@@ -130,6 +130,9 @@ map <- world +
 
 ```
 ![](https://github.com/stepanekm/global-terrorism/blob/master/map.gif)
+```{r gt4}
+gganimate(map, ani.width = 900, ani.height = 500)
+```
 
 
 Of course, if we wanted to read them all in at once and make a tidy frame of all of them

@@ -39,7 +39,6 @@ skilled <- gtclean %>%
 
 grouped <- inner_join(newworld, gtclean, by = c('region' = 'country_txt')) %>%
   filter(region != "Antarctica") 
-#grouped2 <- inner_join(grouped, skilled, by="iyear")
 
 myPalette <- colorRampPalette(rev(brewer.pal(6, "OrRd")))
 

@@ -20,13 +20,7 @@ knitr::opts_chunk$set(
 
 This is a simple RStudio project that Eric Anderson has put together
 as an example/template for students to get a sense of what he expects
-them to do in terms of assembling their data for the 2017 EEB 295 course,
-"[Case Studies in Reproducible Research](https://eriqande.github.io/rep-res-eeb-2017/)".
-
-The general goals of this project (for our purposes at the moment) are fairly straightforward.
-We want to use pedigree information to summarize the ages and distributions of family sizes 
-of coho returning to Klamath River hatcheries.  etc. etc.  
-
+them to do in terms of assembling their data for the 2017 EEB 295 course.
 ## Data
 
 The data for this project are all housed in the `./data` directory.  There are two main types of 
@@ -130,10 +124,6 @@ map <- world +
 
 ```
 ![](https://github.com/stepanekm/global-terrorism/blob/master/map.gif)
-```{r gt4}
-gganimate(map, ani.width = 900, ani.height = 500)
-```
-
 
 Of course, if we wanted to read them all in at once and make a tidy frame of all of them
 

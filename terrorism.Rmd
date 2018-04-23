@@ -78,9 +78,9 @@ map <- world +
 ## Including Plots
 
 You can also embed plots, for example:
+![grab-landing-page](https://github.com/winnie1312/grab/blob/master/grab-landingpage-winnie.gif)
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

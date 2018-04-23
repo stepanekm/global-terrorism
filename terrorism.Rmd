@@ -74,11 +74,7 @@ map <- world +
        caption="Source: start.umd.edu | By Martin Stepanek")
 
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-![grab-landing-page](https://github.com/winnie1312/grab/blob/master/grab-landingpage-winnie.gif)
+![](https://github.com/stepanekm/global-terrorism/blob/master/map.gif)
 
 ```{r pressure, echo=FALSE}
 ```

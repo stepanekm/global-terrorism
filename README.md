@@ -6,18 +6,16 @@ Global Terrorism
 -   [First Plot](#first-plot)
 -   [Second Plot](#second-plot)
 
-<style>
-body {
-text-align: justify}
-</style>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 Story Summary
 -------------
 
+<p style="text-align: justify;">
 In the two last decades, we have witnessed the rapid increase in the number of terroristic attacks all around the world. This troublesome trend undoubtedly had and still has a big influence over the global politics. Right-wing political parties in developed nations often use the fight against terrorism and refusal to take refugees as the main point of their programs. While common people are scared and easily influenced by well worked-out campaigns, the parties from the right political spectrum enjoy the rise in the number of their voters.
-
+</p>
+<p style="text-align: justify;">
 Moreover, any terroristic attack which kills at least a one person in countries such as the United States, France or Germany stir up the wave of solidarity on the social media. But does the terrorism really represent such a big threat for our developed nations? And why not that many people have compassion with countries where the terrorism rage the most?
-
+</p>
 First Plot
 ----------
 

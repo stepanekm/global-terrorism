@@ -1,6 +1,6 @@
 Global Terrorism
 ================
-23 April, 2018
+24 April, 2018
 
 -   [General Goals](#general-goals)
     -   [Reading Data In](#reading-data-in)
@@ -50,7 +50,83 @@ skilled <- gtclean %>%
   summarise(killed = sum(killed))
 
 myPalette <- colorRampPalette(rev(brewer.pal(6, "OrRd")))
+
+gtscatter1 <- gt %>%
+  filter(crit1 == 1, crit2 == 1, nkill > 0) %>%
+  group_by(region_txt, iyear, nkill) %>%
+  summarise(
+    count = n(),
+  ) %>% 
+  mutate(
+    killed = nkill * count
+  ) %>% 
+  group_by(region_txt, iyear) %>%
+  summarise(killed = sum(killed)) %>% 
+  mutate(
+    id = paste(region_txt, iyear, sep="")
+  )
+
+gtscatter2 <- gt %>%
+  filter(crit1 == 1, crit2 == 1, nkill > 0) %>%
+  group_by(region_txt, iyear) %>%
+  summarise(
+    count = n(),
+  ) %>%
+  mutate(
+    id = paste(region_txt, iyear, sep="")
+  )
+
+scattergrouped <- inner_join(gtscatter1, gtscatter2, by="id") %>% 
+  select("region_txt.x", "iyear.x", "killed", "count") %>% 
+  mutate(ratio = killed / count) %>% 
+  filter(region_txt.x == "Middle East & North Africa")
+
+scattergrouped2 <- inner_join(gtscatter1, gtscatter2, by="id") %>% 
+  select("region_txt.x", "iyear.x", "killed", "count") %>% 
+  mutate(ratio = killed / count) %>% 
+  filter(region_txt.x == "Sub-Saharan Africa")
+
+scattergrouped3 <- inner_join(gtscatter1, gtscatter2, by="id") %>% 
+  select("region_txt.x", "iyear.x", "killed", "count") %>% 
+  mutate(ratio = killed / count) %>% 
+  filter(region_txt.x == "South Asia")
+
+scattergrouped4 <- inner_join(gtscatter1, gtscatter2, by="id") %>% 
+  select("region_txt.x", "iyear.x", "killed", "count") %>% 
+  mutate(ratio = killed / count) %>% 
+  filter(region_txt.x == "North America")
+
+scattergrouped5 <- inner_join(gtscatter1, gtscatter2, by="id") %>% 
+  select("region_txt.x", "iyear.x", "killed", "count") %>% 
+  mutate(ratio = killed / count) %>% 
+  filter(region_txt.x == "Western Europe")
+
+ggplot() +
+  geom_line(data = skilled, aes(x=iyear, y=killed, group = 1, color = "#B30000")) +
+  geom_line(data = scattergrouped, aes(x = iyear.x, y = killed, group =1, color = "#e6550d")) +
+  geom_line(data = scattergrouped2, aes(x = iyear.x, y = killed, group =1, color = "#FDD49E")) + 
+  geom_line(data = scattergrouped3, aes(x = iyear.x, y = killed, group =1, color = "#FDBB84")) +
+  geom_line(data = scattergrouped4, aes(x = iyear.x, y = killed, group =1, color = "black")) + 
+  geom_line(data = scattergrouped5, aes(x = iyear.x, y = killed, group =1, color = "grey")) +
+  scale_x_continuous(breaks = seq(1970, 2016, 2)) +
+  labs(y="Killed", title="Terrorist Attacks from 1970 to 2016", x="Year") +
+  theme_minimal() + 
+  theme(plot.title = element_text(size = 14, face = "bold", color = "#4e4d47"),
+        axis.title = element_text(size = 8, color = "#4e4d47"),
+        axis.title.y = element_text(margin=margin(t = 0, r = 10, b = 0, l = 0)),
+        axis.title.x = element_text(margin=margin(t = 10, r = 0, b = 0, l = 0)),
+        plot.background = element_rect(fill = "#f5f5f2", color = NA),
+        legend.position = "top",
+        legend.direction = "horizontal",
+        legend.justification = c(-0.01,0)) + 
+  scale_colour_manual(name = '', 
+                      values =c('#B30000'='#B30000','#e6550d'='#e6550d', "#FDD49E" = "#FDD49E",
+                                "#FDBB84" = "#FDBB84", "grey" = "black", "black" = "grey"),
+                      labels = c('Total','Middle East & North Africa', "Sub-Saharan Africa",
+                                 "South Asia","North America","Western Europe"))
 ```
+
+![](readme-figs/gt-1.png)
 
 ![](readme-figs/r%20gt2-1.png)
 

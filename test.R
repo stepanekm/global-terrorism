@@ -4,7 +4,6 @@ library(mapdata)
 library(maps)
 library(RColorBrewer)
 library(gganimate)
-options(repr.plot.width=9, repr.plot.height=5)
 
 gt <- read_csv("data/database.csv")
 
@@ -33,6 +32,7 @@ gtclean <- gt %>%
   group_by(country_txt, iyear) %>%
   summarise(killed = sum(killed))
 
+#for geom_line
 skilled <- gtclean %>% 
   group_by(iyear) %>% 
   summarise(killed = sum(killed))
@@ -61,7 +61,7 @@ map <- world +
   labs(title = "Number of People Who Died of Terrorist Attacks in",
        caption="Source: start.umd.edu | By Martin Stepanek")
 
-gganimate(map, "map.gif", ani.width = 900, ani.height = 500)
+gganimate(map, ani.width = 900, ani.height = 500)
 
 ggplot(skilled, aes(x=iyear, y=killed)) +
   geom_line(color = rev(myPalette(1))) +
@@ -73,3 +73,88 @@ ggplot(skilled, aes(x=iyear, y=killed)) +
         axis.title.y = element_text(margin=margin(t = 0, r = 10, b = 0, l = 0)),
         axis.title.x = element_text(margin=margin(t = 10, r = 0, b = 0, l = 0)),
         plot.background = element_rect(fill = "#f5f5f2", color = NA))
+
+#scatter-plot
+gtscatter1 <- gt %>%
+  filter(crit1 == 1, crit2 == 1, nkill > 0) %>%
+  group_by(region_txt, iyear, nkill) %>%
+  summarise(
+    count = n(),
+  ) %>% 
+  mutate(
+    killed = nkill * count
+  ) %>% 
+  group_by(region_txt, iyear) %>%
+  summarise(killed = sum(killed)) %>% 
+  mutate(
+    id = paste(region_txt, iyear, sep="")
+  )
+
+gtscatter2 <- gt %>%
+  filter(crit1 == 1, crit2 == 1, nkill > 0) %>%
+  group_by(region_txt, iyear) %>%
+  summarise(
+    count = n(),
+  ) %>%
+  mutate(
+    id = paste(region_txt, iyear, sep="")
+  )
+
+scattergrouped <- inner_join(gtscatter1, gtscatter2, by="id") %>% 
+  select("region_txt.x", "iyear.x", "killed", "count") %>% 
+  mutate(ratio = killed / count) %>% 
+  filter(region_txt.x == "Middle East & North Africa")
+
+scattergrouped2 <- inner_join(gtscatter1, gtscatter2, by="id") %>% 
+  select("region_txt.x", "iyear.x", "killed", "count") %>% 
+  mutate(ratio = killed / count) %>% 
+  filter(region_txt.x == "Sub-Saharan Africa")
+
+scattergrouped3 <- inner_join(gtscatter1, gtscatter2, by="id") %>% 
+  select("region_txt.x", "iyear.x", "killed", "count") %>% 
+  mutate(ratio = killed / count) %>% 
+  filter(region_txt.x == "South Asia")
+
+scattergrouped4 <- inner_join(gtscatter1, gtscatter2, by="id") %>% 
+  select("region_txt.x", "iyear.x", "killed", "count") %>% 
+  mutate(ratio = killed / count) %>% 
+  filter(region_txt.x == "North America")
+
+scattergrouped5 <- inner_join(gtscatter1, gtscatter2, by="id") %>% 
+  select("region_txt.x", "iyear.x", "killed", "count") %>% 
+  mutate(ratio = killed / count) %>% 
+  filter(region_txt.x == "Western Europe")
+
+ggplot() +
+  geom_line(data = skilled, aes(x=iyear, y=killed, group = 1, color = "#B30000")) +
+  geom_line(data = scattergrouped, aes(x = iyear.x, y = killed, group =1, color = "#e6550d")) +
+  geom_line(data = scattergrouped2, aes(x = iyear.x, y = killed, group =1, color = "#FDD49E")) + 
+  geom_line(data = scattergrouped3, aes(x = iyear.x, y = killed, group =1, color = "#FDBB84")) +
+  geom_line(data = scattergrouped4, aes(x = iyear.x, y = killed, group =1, color = "black")) + 
+  geom_line(data = scattergrouped5, aes(x = iyear.x, y = killed, group =1, color = "grey")) +
+  scale_x_continuous(breaks = seq(1970, 2016, 2)) +
+  labs(y="Killed", title="Terrorist Attacks from 1970 to 2016", x="Year") +
+  theme_minimal() + 
+  theme(plot.title = element_text(size = 14, face = "bold", color = "#4e4d47"),
+        axis.title = element_text(size = 8, color = "#4e4d47"),
+        axis.title.y = element_text(margin=margin(t = 0, r = 10, b = 0, l = 0)),
+        axis.title.x = element_text(margin=margin(t = 10, r = 0, b = 0, l = 0)),
+        plot.background = element_rect(fill = "#f5f5f2", color = NA),
+        legend.position = "top",
+        legend.direction = "horizontal",
+        legend.justification = c(-0.01,0)) + 
+  scale_colour_manual(name = '', 
+                      values =c('#B30000'='#B30000','#e6550d'='#e6550d', "#FDD49E" = "#FDD49E",
+                                "#FDBB84" = "#FDBB84", "black" = "black", "grey" = "grey"),
+                      labels = c('Total','Middle East & North Africa', "Sub-Saharan Africa",
+                                 "South Asia","North America","Western Europe"))
+
+geom_line(data = alcohol, aes(x = Year, y = count, group = 1), color = "red") 
+
+ggplot(scattergrouped, aes(reorder(region_txt.x, -ratio), weight=ratio)) +
+  geom_bar(width=0.75) +
+  labs(title = "Number of suicides per 100.000 people ", x="State", y="Suicides") +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 14, face = "bold"), axis.title = element_text(size = 8),
+        axis.title.y = element_text(margin=margin(t = 0, r = 10, b = 0, l = 0)),
+        axis.title.x = element_text(margin=margin(t = 10, r = 0, b = 0, l = 0)))

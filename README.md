@@ -1,27 +1,25 @@
 Global Terrorism
 ================
-24 April, 2018
+25 April, 2018
 
--   [General Goals](#general-goals)
-    -   [Reading Data In](#reading-data-in)
+-   [Story Summary](#story-summary)
+-   [First Plot](#first-plot)
+-   [Second Plot](#second-plot)
 
+<style>
+body {
+text-align: justify}
+</style>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-General Goals
+Story Summary
 -------------
 
-This is a simple RStudio project that Eric Anderson has put together as an example/template for students to get a sense of what he expects them to do in terms of assembling their data for the 2017 EEB 295 course. \#\# Data
+In the two last decades, we have witnessed the rapid increase in the number of terroristic attacks all around the world. This troublesome trend undoubtedly had and still has a big influence over the global politics. Right-wing political parties in developed nations often use the fight against terrorism and refusal to take refugees as the main point of their programs. While common people are scared and easily influenced by well worked-out campaigns, the parties from the right political spectrum enjoy the rise in the number of their voters.
 
-The data for this project are all housed in the `./data` directory. There are two main types of files:
+Moreover, any terroristic attack which kills at least a one person in countries such as the United States, France or Germany stir up the wave of solidarity on the social media. But does the terrorism really represent such a big threat for our developed nations? And why not that many people have compassion with countries where the terrorism rage the most?
 
-1.  There are three files which are output files from the program [SNPPIT](https://github.com/eriqande/snppit). These are `snppit_output_ParentageAssignments_2013Juvs.txt`, `snppit_output_ParentageAssignments_2014Juvs.txt`, and `snppit_output_ParentageAssignments_2015Juvs.txt`. These are TAB-delimited text files which give the inferred trios (Father-Mother-Offspring) of hatchery coho salmon in our Shasta River Project. These files use "---" to denote columns that have missing data. These result from analyses made on the genetic data. In a real reproducible example, we would have started from the genotype data and actually run the SNPPIT analyses reproducibly, as well. But, for an example, it will be simpler to start from these simple, intermediate files.
-
-2.  There is one data file of extra metadata that should include all the individuals in the snppit output files (and probably a few extra ones as well.) The main key between this file and the other ones is the NFMS\_DNA\_ID which is part of the ID in the Kid, Ma, and Pa columns in the `snppit_output*` files.
-
-### Reading Data In
-
-#### SNPPIT files
-
-The SNPPIT files can be read in with `read_tsv()` making note of the missing data "---".
+First Plot
+----------
 
 ``` r
 library(dplyr)
@@ -126,9 +124,10 @@ ggplot() +
                                  "South Asia","North America","Western Europe"))
 ```
 
-![](readme-figs/gt-1.png)
+![](readme-figs/gt-1.png) bla bla bla bla bla
 
-![](readme-figs/r%20gt2-1.png)
+Second Plot
+-----------
 
 ``` r
 worldmap <- map_data("world")
@@ -169,8 +168,4 @@ map <- world +
 
 ![](https://github.com/stepanekm/global-terrorism/blob/master/map.gif)
 
-Of course, if we wanted to read them all in at once and make a tidy frame of all of them
-
-#### The Meta Data
-
-This file is actually an interesting example because it has column names with single quotes (who did that?) and also with "\#" symbols. If we read this with base R's `read.csv()` it will mangle those names. The `readr` functions never do that. There are also clearly some problems, which we will get to later
+And Here more texts needs to be written ...

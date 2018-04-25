@@ -32,6 +32,22 @@ gtclean <- gt %>%
   group_by(country_txt, iyear) %>%
   summarise(killed = sum(killed))
 
+
+#from graph 2 text
+skilled2 <- gtclean %>% 
+  group_by(country_txt) %>% 
+  summarise(killed = sum(killed)) %>%
+  filter(killed > 11000) %>% 
+  arrange(desc(killed)) 
+
+ggplot(skilled2, aes(reorder(country_txt, -killed), weight=killed)) +
+  geom_bar(width=0.75) +
+  labs(title = "Number of suicides per 100.000 people ", x="State", y="Suicides") +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 14, face = "bold"), axis.title = element_text(size = 8),
+        axis.title.y = element_text(margin=margin(t = 0, r = 10, b = 0, l = 0)),
+        axis.title.x = element_text(margin=margin(t = 10, r = 0, b = 0, l = 0)))
+
 #for geom_line
 skilled <- gtclean %>% 
   group_by(iyear) %>% 

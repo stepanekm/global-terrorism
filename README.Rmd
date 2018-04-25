@@ -1,5 +1,5 @@
 ---
-title: "Global Terrorism"
+title: "Global Terrorism in Time"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   github_document:
@@ -17,9 +17,9 @@ knitr::opts_chunk$set(
 
 ## Story Summary
 
-In the two last decades, we have witnessed the rapid increase in the number of terroristic attacks all around the world. This troublesome trend undoubtedly had and still has a big influence over the global politics. Right-wing political parties in developed nations often use the fight against terrorism and refusal to take refugees as the main point of their programs. While common people are scared and easily influenced by well worked-out campaigns, the parties from the right political spectrum enjoy the rise in the number of their voters. 
+In the two last decades, we have witnessed the rapid increase in the number of terroristic attacks all around the world. This troublesome trend undoubtedly had and still has a big influence on the global politics. Right-wing political parties in developed nations often use the fight against terrorism and refusal to take refugees as the main point of their programs. While common people are scared and easily influenced by well worked-out campaigns, the parties from the right political spectrum enjoy the rise in the number of their voters. 
 
-Moreover, any terroristic attack which kills at least a one person in countries such as the United States, France or Germany stir up the wave of solidarity on the social media. But does the terrorism really represent such a big threat for our developed nations? And why not that many people have compassion with countries where the terrorism rage the most? 
+Moreover, any terroristic attack which kills at least a one person in countries such as the United States, France or Germany stir up the wave of solidarity on the social media. But does the terrorism really represent such a big threat to our developed nations? And why not that many people have compassion with countries where the terrorists rage the most? 
 
 ## First Plot 
 ```{r gt, message= FALSE, warning= FALSE, fig.height = 5, fig.width = 10}
@@ -108,7 +108,7 @@ ggplot() +
   geom_line(data = scattergrouped4, aes(x = iyear.x, y = killed, group =1, color = "black")) + 
   geom_line(data = scattergrouped5, aes(x = iyear.x, y = killed, group =1, color = "grey")) +
   scale_x_continuous(breaks = seq(1970, 2016, 2)) +
-  labs(y="Number of Deaths", title="Terrorist Attacks from 1970 to 2016", x="Year") +
+  labs(y="Number of Deaths", title="Number of Terrorist Attacks Victims from 1970 to 2016", x="Year") +
   theme_minimal() + 
   theme(plot.title = element_text(size = 14, face = "bold", color = "#4e4d47"),
         axis.title = element_text(size = 8, color = "#4e4d47"),
@@ -125,9 +125,10 @@ ggplot() +
                                  "South Asia","North America","Western Europe"))
 
 ```
-The first graph reveals us a couple of trends in the number of deaths caused by terrorism. On the first glance, we can spot a rapid surge since 2011 in the figure of people killed by terroristic attack. The number of deaths peaked in 2014, when attacks claimed 43.141 victims. That’s a hardly believable increase of 434% between those years. 
 
-Second important output of this graph is the derived information, where terrorism killed the most. Western European countries and the United States have just a tiny fraction of all victims. The most critical regions are Middle East, Northern and Sub-Saharan Africa and South Asia. 
+The first graph reveals us a couple of trends in the number of deaths caused by terrorism. On the first glance, we can spot a rapid surge since 2011 in the figure of people killed by the terroristic attack. The number of deaths peaked in 2014 when attacks claimed 43.141 victims. That’s a hardly believable increase of 434% between those years. 
+
+The second important output of this graph is the derived information, where terrorism killed the most. Western European countries and the United States have just a tiny fraction of all victims. The most critical regions are Middle East, Northern and Sub-Saharan Africa and South Asia. 
 
 ## Second Plot 
 ```{r gt2, message= FALSE, warning= FALSE}
@@ -168,7 +169,6 @@ map <- world +
 
 ```
 ![](https://github.com/stepanekm/global-terrorism/blob/master/map.gif)
-
-And Here more texts needs to be written ... 
+This global map provides us with a different view on the global terrorism. We can easily identify the countries where the terroristic attacks took over the years the most lives. Over the 46-yearlong tracked period the most severely stricken were Iraq, Afghanistan, Pakistan, and Nigeria. 
 
 
